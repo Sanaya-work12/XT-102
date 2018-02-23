@@ -1,0 +1,12 @@
+$base-size : 10px;
+
+@mixin round-corners($size: 5px) {
+    border-radius : $size;
+    -moz-border-radius : $size;
+    -webkit-border-radius : $size;
+}
+
+@mixin fonts {
+    font-family: 'Open sans',Verdana, Geneva, Tahoma, sans-serif;
+    font-size: $base-size + 14px;
+}
