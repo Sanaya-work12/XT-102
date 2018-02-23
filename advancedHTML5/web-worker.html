@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Worker</title>
+</head>
+<body>
+    <article>
+        <section>
+            
+    <div id="msg"></div>
+            
+    <input type="button" id="start" 
+    value="Start"/>
+    <input type="button" id="stop" 
+    value="Stop"/>
+    <input type="button" id="pause" 
+    value="pause"/>
+    <h2>Result 
+            <output id="result">
+                </output></h2>
+          <ul id="log"></ul>  
+
+        </section>
+    </article>
+
+<!-- <script src="without-web-worker.js"></script> -->
+    <script>
+        (function () {
+            let result = document.querySelector('#result'),
+            worker;
+            document.querySelector('#start').addEventListener('click',function(event){
+                if (worker === undefined){
+                    worker = new Worker('web-worker.js');
+                }
+                worker.onmessage = (workerEvent) => {
+                    let parseData = JSON.parse(workerEvent.data);
+                    result.innerHTML = parseData.root;
+                }
+                worker.onerror = (workerEvent) => {
+                    alert(workerEvent.message);
+                }
+                worker.postMessage('start');
+                
+                document.querySelector('#start').disabled = true;
+            });
+            document.querySelector('#pause').addEventListener('click',function(event){
+                worker.postMessage('pause');
+                document.querySelector('#start').disabled = false;
+                
+            });
+            document.querySelector('#stop').addEventListener('click',function(event){
+                worker.terminate();
+                worker = undefined;
+                document.querySelector('#start').disabled = false;
+            });
+        })();
+    </script>
+</body>
+</html>
