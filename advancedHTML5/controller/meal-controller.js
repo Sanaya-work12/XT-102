@@ -34,5 +34,7 @@ class MealController{
             }
         });
     }
+
+    editMeal()
 }
 export default new MealController();

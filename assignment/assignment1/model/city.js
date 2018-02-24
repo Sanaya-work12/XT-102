@@ -10,7 +10,6 @@ class Model{
     add(streetName,cityName){
         this.streetName = streetName;
         this.cityName = cityName;
-        debugger;
         this.itemChanged.notify(this.streetName,this.cityName);
     }
 }
