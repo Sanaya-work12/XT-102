@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './server/initiate-client.js',
+    entry: './mvc.js',
    output: {
       publicPath: '/',
       filename: 'main.js'
