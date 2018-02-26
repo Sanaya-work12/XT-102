@@ -29,9 +29,9 @@
 <!-- <script src="without-web-worker.js"></script> -->
     <script>
         (function () {
-            let result = document.querySelector('#result'),
+            let result = $('#result'),
             worker;
-            document.querySelector('#start').addEventListener('click',function(event){
+            $('#start').addEventListener('click',function(event){
                 if (worker === undefined){
                     worker = new Worker('web-worker.js');
                 }
@@ -44,17 +44,17 @@
                 }
                 worker.postMessage('start');
                 
-                document.querySelector('#start').disabled = true;
+                $('#start').disabled = true;
             });
-            document.querySelector('#pause').addEventListener('click',function(event){
+            $('#pause').addEventListener('click',function(event){
                 worker.postMessage('pause');
-                document.querySelector('#start').disabled = false;
+                $('#start').disabled = false;
                 
             });
-            document.querySelector('#stop').addEventListener('click',function(event){
+            $('#stop').addEventListener('click',function(event){
                 worker.terminate();
                 worker = undefined;
-                document.querySelector('#start').disabled = false;
+                $('#start').disabled = false;
             });
         })();
     </script>
