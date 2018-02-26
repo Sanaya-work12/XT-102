@@ -1,3 +1,5 @@
+import Observer from "../observer/listener-notify";
+
 export default class Model{
     constructor(id,meal,calorie){
         this.id = id;

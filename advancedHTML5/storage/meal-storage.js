@@ -1,4 +1,10 @@
+import Observer from "../observer/listener-notify";
+
 class DataStorage{
+
+    constructor(){
+        this.itemChanged = new Observer();
+    }
 
     storeMeal(meal){
         let items;
@@ -12,6 +18,8 @@ class DataStorage{
             items.push(meal);
             localStorage.setItem('meals',JSON.stringify(items));
         }
+
+        this.itemChanged.notify(meal);
     }
 
     getMeals(){
@@ -33,6 +41,7 @@ class DataStorage{
             localStorage.setItem('meals',JSON.stringify(meals));
         }
         });
+        this.itemChanged.notify(meal);
     } 
 
     removeMeal(meal){
@@ -44,8 +53,12 @@ class DataStorage{
             }
             localStorage.setItem('meals',JSON.stringify(meals));
         });
+        this.itemChanged.notify(meal);
     }    
 
+    clearMeal(){
+        localStorage.removeItem('meals');
+    }
 }
 
 export default new DataStorage();
