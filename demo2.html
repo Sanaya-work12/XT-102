@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="test.js"></script>
+</head>
+
+<body>
+
+  <div id="div1">
+    DIV 1
+  </div>
+
+  <div id="div2">
+    DIV 2
+  </div>
+
+  <div id="div3">
+    DIV 3
+  </div>
+
+  <div id="div4">
+    DIV 4
+  </div>
+
+  <div id="div5">
+    DIV 5
+  </div>
+
+  <div id="div6">
+    DIV 6
+  </div>
+
+  <button id="btn1">Click</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script>
+    $(function () {
+      //use '.fn' for creating custom functions
+      $.fn.customFunction = function () {
+        var arr = [];
+        $.each(this, (index, item) => {
+          if (index % 3 === 0) {
+            arr.push(item);
+          }
+        });
+        //pushStack keeps track of the previous jquery collections
+        //to enable function chaining
+        return this.pushStack(arr, 'customFunction', ''); // every jquery returns a jquery object which can be object or function.
+        //to access custom function everywhere and apply function chaining use pushStack
+      };
+
+      $('#btn1').click(function () {
+        $('div').customFunction().css({ 'color': 'red', 'font-weight': 'bold' });
+      });
+
+      //  $('div').on('mouseenter hover', function () {
+      //    alert("click the button");
+      //  })
+
+
+      let array1 = [1, 2, 3, 3, 4, 4, 5];
+      let array2 = [6, 7, 8];
+      console.log($.unique(array1));
+      console.log($.uniqueSort(array1)); //removes duplictae elements and sorts and display
+      console.log($.merge(array1, array2)); //merges two arrays into the source arrays
+      console.log($);
+
+      //grep is a filtered array
+      let greepedArray = $.grep(array1, (item) => {
+        return item % 2 == 0;
+      })
+      console.log(greepedArray);
+
+      //map is an iterator
+      let mapArray = $.map(array1, (item, index) => {
+        return item % 2 == 0;
+      })
+      console.log(mapArray);
+
+      console.log($('div'));// this returns the object array of the div
+      console.log($.makeArray($('div')));//it returns the array that has only the div elements
+      //console.log($('div').makeArray()) gives array because makeArray is a jquery Object function not a selector Object function
+
+      let employee = {
+        id: 1,
+        name: 'Emp1',
+        submitTimeSheet() {
+          return 'Employee should submit The Time Sheet.';
+        }
+      }
+
+      let manager = {
+        verifyTimeSheet() {
+          return 'Manager should verify The Time Sheet.';
+        }
+      }
+
+      let vp = {
+        timeSheet() {
+          return 'VP should verify The Time Sheet.';
+        }
+      }
+
+      $.extend(true, manager, employee)
+      $.extend(true, vp, manager, employee); // you can extend more than 2 objects.
+      console.log(manager.submitTimeSheet());
+      console.log(vp.submitTimeSheet());
+
+    });
+
+  </script>
+</body>
+
+</html>
