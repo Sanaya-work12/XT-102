@@ -46,6 +46,10 @@ class MealController{
         });
     }
 
+    clearMeal(){
+            DataStorage.clearMeal();
+    }
+
    /*  displayMeal() {
         if(this.items.length > 0)
         {

@@ -56,6 +56,9 @@ class DataStorage{
         this.itemChanged.notify(meal);
     }    
 
+    clearMeal(){
+        localStorage.removeItem('meals');
+    }
 }
 
 export default new DataStorage();
