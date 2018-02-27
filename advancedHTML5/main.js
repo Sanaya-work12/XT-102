@@ -145,7 +145,7 @@
 	                var td1 = document.createElement('td');
 	                var td2 = document.createElement('td');
 	                var td3 = document.createElement('td');
-	                editBtn.id = item.id;
+	                editBtn.setAttribute.id = item.id;
 	                editBtn.innerHTML = 'Edit';
 	                td1.innerHTML = item.meal;
 	                td2.innerHTML = item.calorie;
@@ -164,24 +164,24 @@
 	                    that.elements.itemName.value = item.meal;
 	                    that.elements.calorieAmt.value = item.calorie;
 	                });
+	            });
 
-	                _this2.elements.updateBtn.addEventListener('click', function () {
-	                    that.controller.updateMeal(that.targetId, that.elements.itemName.value, that.elements.calorieAmt.value);
-	                    that.elements.addBtn.classList.remove('hide');
-	                    that.elements.updateBtn.classList.add('hide');
-	                    that.elements.delBtn.classList.add('hide');
-	                    that.elements.itemName.value = '';
-	                    that.elements.calorieAmt.value = '';
-	                });
+	            this.elements.updateBtn.addEventListener('click', function () {
+	                that.controller.updateMeal(that.targetId, that.elements.itemName.value, that.elements.calorieAmt.value);
+	                that.elements.addBtn.classList.remove('hide');
+	                that.elements.updateBtn.classList.add('hide');
+	                that.elements.delBtn.classList.add('hide');
+	                that.elements.itemName.value = '';
+	                that.elements.calorieAmt.value = '';
+	            });
 
-	                _this2.elements.delBtn.addEventListener('click', function () {
-	                    this.controller.removeMeal(this.targetId);
-	                    this.elements.addBtn.classList.remove('hide');
-	                    this.elements.updateBtn.classList.add('hide');
-	                    this.elements.delBtn.classList.add('hide');
-	                    this.elements.itemName.value = '';
-	                    this.elements.calorieAmt.value = '';
-	                });
+	            this.elements.delBtn.addEventListener('click', function () {
+	                that.controller.removeMeal(that.targetId);
+	                that.elements.addBtn.classList.remove('hide');
+	                that.elements.updateBtn.classList.add('hide');
+	                that.elements.delBtn.classList.add('hide');
+	                that.elements.itemName.value = '';
+	                that.elements.calorieAmt.value = '';
 	            });
 	        }
 	    }]);
