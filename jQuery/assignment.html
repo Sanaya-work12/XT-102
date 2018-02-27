@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="icon" href="images.jpg" type="image/jpg" sizes="16x16">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <style>
+        .title {
+            color:white;
+            font-weight: bold;
+            background-color: mediumblue;
+            font-size: 24px;
+            text-align: left;
+        }
+        .content {
+            margin-top: 20px;
+            border: 1px solid grey;
+            background-color:rgba(236, 236, 236, 0.856);
+            width: 1212px;
+        }
+        .space{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="container-fluid title">
+        <h1>Microsheets</h1>
+    </header>
+        <section class="container-fluid content">
+          <div class="row">
+            <form action="submit" method="post" class="form-horizontal space">
+        <div class="form-group">
+                <label for="title" class="control-label col-sm-2">What's on your mind?</label>
+            <div class="col-sm-10">
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="body" class="control-label col-sm-2">Description</label>
+            <div class="col-sm-10">  
+                <input type="text" name="body" id="body" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10 col-sm-offset-2">
+                <input type="button" value="Post" class="btn btn-submit">
+            </div>
+        </div>
+            </form>
+        </div>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script>
+        $('input[type=button]').click(function(){
+            var title = $('#title').val();
+            var body = $('#body').val();
+            console.log($('#title').val());
+                $.ajax({
+                    url: "http://localhost:8000/posts",
+                    data: { "title" : title,
+                            "body" : body},
+                    dataType: "json",
+                    type: "POST",
+                    success: function(){alert("Data Submitted.")},
+                    error: function(){alert("Data not Submitted.")}
+                });
+        });
+    </script>
+    </body>
+</html>

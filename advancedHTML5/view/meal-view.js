@@ -68,12 +68,12 @@ export default class View{
             });
     
             this.elements.delBtn.addEventListener('click', function() {
-                this.controller.removeMeal(this.targetId);
-                this.elements.addBtn.classList.remove('hide');
-                this.elements.updateBtn.classList.add('hide');
-                this.elements.delBtn.classList.add('hide');
-                this.elements.itemName.value = '';
-                this.elements.calorieAmt.value = '';
+                that.controller.removeMeal(that.targetId);
+                that.elements.addBtn.classList.remove('hide');
+                that.elements.updateBtn.classList.add('hide');
+                that.elements.delBtn.classList.add('hide');
+                that.elements.itemName.value = '';
+                that.elements.calorieAmt.value = '';
             });
     
         });
